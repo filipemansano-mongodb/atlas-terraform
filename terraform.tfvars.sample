@@ -1,0 +1,29 @@
+public_key = ""
+private_key = ""
+org_id = ""
+aws_access_key= ""
+aws_secret_key= ""
+aws_region = ""
+
+users = [
+  {
+    username           = "test-acc-username1"
+    password           = "test-acc-password1"
+    roles = [
+      {
+        role_name     = "atlasAdmin"
+        database_name = "admin"
+      }
+    ]
+  },
+  {
+    username           = "test-acc-username2"
+    password           = "test-acc-password2"
+    roles = [
+      {
+        role_name     = "readWriteAnyDatabase"
+        database_name = "admin"
+      }
+    ]
+  }
+]

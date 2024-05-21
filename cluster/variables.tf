@@ -21,6 +21,12 @@ variable "auto_scaling_compute_enabled" {
   default     = false
 }
 
+variable "termination_protection_enabled" {
+  type        = bool
+  description = "Flag that indicates whether termination protection is enabled on the cluster"
+  default     = true
+}
+
 variable "paused" {
   type        = bool
   description = "pause or unpause the cluster."
@@ -30,6 +36,12 @@ variable "paused" {
 variable "auto_scaling_compute_scale_down_enabled" {
   type        = bool
   description = "Enable cluster to down scale automatically based on compute."
+  default     = true
+}
+
+variable "auto_scaling_disk_gb_enabled" {
+  type        = bool
+  description = "Enable disk to up scale automatically based on size."
   default     = true
 }
 
@@ -63,31 +75,31 @@ variable "max_instance_size" {
   default     = "M10"
 }
 
-variable "region1" {
+variable "region" {
   type        = string
   description = "MongoDb Atlas Cluster Region 1, must be a region for the provider given"
   default     = "US_EAST_1"
 }
 
-variable "electable_nodes_in_region_1" {
+variable "electable_nodes_in_region" {
   type        = number
   description = "Number of electable nodes in region 1."
   default     = 3
 }
 
-variable "priority_in_region_1" {
+variable "priority_in_region" {
   type        = number
   description = "Priority of electable nodes in region 1."
   default     = 7
 }
 
-variable "read_only_nodes_in_region_1" {
+variable "read_only_nodes_in_region" {
   type        = number
   description = "Number of read-only nodes in region 1."
   default     = 0
 }
 
-variable "analytics_nodes_in_region_1" {
+variable "analytics_nodes_in_region" {
   type        = number
   description = "Number of analytic nodes in region 1."
   default     = 0
@@ -99,6 +111,12 @@ variable "num_shards" {
   default     = 1
 }
 
+variable "disk_size_gb" {
+  type        = number
+  description = "Disk size GB"
+  default     = 10
+}
+
 variable "cluster_type" {
   type        = string
   description = "Type of the cluster, must be REPLICASET or SHARDED"
@@ -108,4 +126,12 @@ variable "cluster_type" {
 variable "cluster_name" {
   type        = string
   description = "Name of the cluster to be created."
+}
+
+variable "tags" {
+  description = "Lista de tags."
+  type = list(object({
+    key     = string
+    value = string
+  }))
 }
